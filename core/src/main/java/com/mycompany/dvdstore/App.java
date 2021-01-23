@@ -1,9 +1,9 @@
 package com.mycompany.dvdstore;
 
-import com.mycompany.dvdstore.entity.Movie;
-import com.mycompany.dvdstore.repository.MovieRepository;
-
-import java.util.Scanner;
+import com.mycompany.dvdstore.controller.MovieController;
+import com.mycompany.dvdstore.repository.FileMovieRepository;
+import com.mycompany.dvdstore.repository.MovieRepositoryInterface;
+import com.mycompany.dvdstore.service.DefaultMovieService;
 
 /**
  * Hello world!
@@ -13,17 +13,14 @@ public class App
 {
     public static void main( String[] args )
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println( "donnez le titre du film a ajouter: " );
-        String title = sc.nextLine();
-        System.out.println("donnez le genre du film");
-        String genre = sc.nextLine();
-        Movie movie = new Movie();
-        movie.setTitle(title);
-        movie.setGenre(genre);
-        MovieRepository movieRepository = new MovieRepository();
+        MovieController movieController = new MovieController();
+        DefaultMovieService movieService = new DefaultMovieService();
+        MovieRepositoryInterface movieRepository = new FileMovieRepository();
 
-        movieRepository.add(movie);
+        movieController.setMovieService(movieService);
+        movieService.setMovieRepository(movieRepository);
+
+        movieController.addUsingConsole();
 
     }
 }
