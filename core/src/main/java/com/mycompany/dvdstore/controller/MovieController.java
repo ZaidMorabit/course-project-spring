@@ -2,11 +2,15 @@ package com.mycompany.dvdstore.controller;
 
 import com.mycompany.dvdstore.entity.Movie;
 import com.mycompany.dvdstore.service.MovieServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
+@Controller //aucune difference entre @Component et @Controller dans le traitement par spring mais a plus de sens à la lecture
 public class MovieController {
 
+    @Autowired
     MovieServiceInterface movieService;
 
     public void addUsingConsole(){

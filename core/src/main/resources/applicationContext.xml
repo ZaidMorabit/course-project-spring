@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+        on peut injecter automatiquement les dependances via la propriété autowire dans les balise bean
+        ou dans toutes les balises bean en mettant la prop default-autowire dans la balise beans
+
+        La valeur byName va injecter les classes dont le nom de l'id correspond au nom de la propriété qui recoit l'objet → faire attention aux noms
+        La valeur byType va injecter les classes dont le type correspond au type des champ dans des autres classes si il y en a.
+
+        Spring scanner et ajoute automatiquement les dépendance sans que l'ont les lui spécifie avec autowire
+    -->
+
+    <!--Pour configurer l'injection de dépendance via annotations-->
+    <!--<context:annotation-config/>--><!--est obselete depuis l'introduction de la balise context:component-scan et les annotation @Component-->
+    <!--Pour configurer la provenance des valeurs dans @Value(${...})-->
+    <context:property-placeholder location="classpath:application.properties"/>
+    <!--Pour configurer le package où lancer detection des bean spring qui sont annotées-->
+    <context:component-scan base-package="com.mycompany.dvdstore.controller"/>
+    <context:component-scan base-package="com.mycompany.dvdstore.service"/>
+    <context:component-scan base-package="com.mycompany.dvdstore.repository.file"/>
+
+    <!--<bean id="movieRepository" class="com.mycompany.dvdstore.repository.file.FileMovieRepository">
+        <property name="file" value="C:\\temp\\movies.csv" />
+    </bean>
+    <bean id="movieService" class="com.mycompany.dvdstore.service.DefaultMovieService">
+        <property name="movieRepository" ref="movieRepository" />
+    </bean>
+    <bean class="com.mycompany.dvdstore.controller.MovieController">
+        <property name="movieService" ref="movieService" />
+    </bean>-->
+
+    
+
+</beans>
