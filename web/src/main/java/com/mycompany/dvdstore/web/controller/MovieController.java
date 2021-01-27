@@ -1,4 +1,4 @@
-package com.mycompany.dvdstore.controller;
+package com.mycompany.dvdstore.web.controller;
 
 import com.mycompany.dvdstore.entity.Movie;
 import com.mycompany.dvdstore.service.MovieServiceInterface;
