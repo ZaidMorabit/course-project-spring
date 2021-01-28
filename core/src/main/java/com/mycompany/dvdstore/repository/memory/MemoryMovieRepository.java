@@ -11,14 +11,23 @@ import java.util.List;
 public class MemoryMovieRepository implements MovieRepositoryInterface {
 
     private static List<Movie> movies = new ArrayList<>();
+    private static long lastId = 0;
 
     public void add (Movie movie){
+        movie.setId(++lastId);
         movies.add(movie);
         System.out.println("The movie "+movie.getTitle()+" has been added.");
     }
 
     @Override
     public List<Movie> list() {
-        return null;
+        return movies;
+    }
+
+    @Override
+    public Movie getById(long id) {
+        return movies.stream().
+                filter(m -> m.getId()==id).
+                findFirst().get();
     }
 }

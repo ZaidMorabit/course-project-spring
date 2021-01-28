@@ -1,10 +1,15 @@
-package com.mycompany.dvdstore.entity;
+package com.mycompany.dvdstore.web.form;
 
-public class Movie {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+public class MovieForm {
+
+    @NotBlank
+    @Size(max = 20)
     private String title;
+    @NotBlank
     private String genre;
-    private Long id;
     private String description;
 
     public String getDescription() {
@@ -13,14 +18,6 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {

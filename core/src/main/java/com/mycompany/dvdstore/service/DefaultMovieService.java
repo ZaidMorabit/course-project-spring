@@ -14,6 +14,8 @@ public class DefaultMovieService implements MovieServiceInterface {
     MovieRepositoryInterface movieRepository;
 
     public void registerMovie(Movie movie){
+        if(movie.getDescription() == null)
+            movie.setDescription("no description");
         movieRepository.add(movie);
     }
 
@@ -21,6 +23,12 @@ public class DefaultMovieService implements MovieServiceInterface {
     public List<Movie> getMovieList() {
         return movieRepository.list();
     }
+
+    @Override
+    public Movie getMovieById(long id) {
+        return movieRepository.getById(id);
+    }
+
 
     public MovieRepositoryInterface getMovieRepository() {
         return movieRepository;
