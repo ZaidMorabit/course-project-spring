@@ -13,10 +13,10 @@ public class DefaultMovieService implements MovieServiceInterface {
     @Autowired //ne passe plus par le setter sauf si elle est sur le setter (bytype)
     MovieRepositoryInterface movieRepository;
 
-    public void registerMovie(Movie movie){
+    public Movie registerMovie(Movie movie){
         if(movie.getDescription() == null)
             movie.setDescription("no description");
-        movieRepository.add(movie);
+        return movieRepository.add(movie);
     }
 
     @Override
